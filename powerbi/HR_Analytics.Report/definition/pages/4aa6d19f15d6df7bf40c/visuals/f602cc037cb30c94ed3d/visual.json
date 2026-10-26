@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "f602cc037cb30c94ed3d",
+  "position": {
+    "x": 268,
+    "y": 1032,
+    "z": 21,
+    "height": 36,
+    "width": 1628,
+    "tabOrder": 21
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Note: the source dataset has no recruitment/hiring, review-year or geographic-location fields, so time-to-fill, hiring channels, performance trends and maps are not included. Distance-from-home and business travel are used instead.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#64748b"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

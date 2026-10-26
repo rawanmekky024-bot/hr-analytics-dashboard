@@ -1,0 +1,50 @@
+table _Measures
+	lineageTag: 894e02b1-9392-4597-9379-43b205257333
+
+	measure 'Total Employees' = COUNTROWS(Employees)
+		formatString: #,0
+		lineageTag: a9e039f3-0b3f-468a-ab32-2c475e0fe54a
+
+	measure 'Total Headcount' = CALCULATE(COUNTROWS(Employees), Employees[Status] = "Active")
+		formatString: #,0
+		lineageTag: 660cd1ac-51dc-4bb9-9a90-a643315d9431
+
+	measure 'Total Resignations' = CALCULATE(COUNTROWS(Employees), Employees[Status] = "Terminated")
+		formatString: #,0
+		lineageTag: 6df11493-ebf6-4e15-a986-1439260729ad
+
+	measure 'Attrition Rate %' = DIVIDE([Total Resignations], [Total Employees], 0)
+		formatString: 0.0%
+		lineageTag: a574d04a-beca-45bc-a260-16b3b8ece8e2
+
+	measure 'Average Tenure (Years)' = AVERAGE(Employees[YearsAtCompany])
+		formatString: 0.00
+		lineageTag: 71f65de1-7800-43e0-a91d-0adf5751ac32
+
+	measure 'Average Salary' = AVERAGE(Employees[MonthlyIncome])
+		formatString: #,0
+		lineageTag: 07ea3c16-2be7-4679-87bf-a908d65ac1b5
+
+	measure 'Male Count' = -CALCULATE(COUNTROWS(Employees), Employees[Status] = "Active", Employees[Gender] = "Male")
+		formatString: #,0;#,0
+		lineageTag: df67e532-cfe9-4010-88ba-504f600a6205
+
+	measure 'Female Count' = CALCULATE(COUNTROWS(Employees), Employees[Status] = "Active", Employees[Gender] = "Female")
+		formatString: #,0
+		lineageTag: 9716ef8e-2d52-4491-84da-3344490be7b7
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: a9936604-09f6-4bb6-b85c-78be7a02f3fa
+		summarizeBy: none
+		sourceColumn: Column1
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Column1 = text], {})
+				in
+				    Source
+
